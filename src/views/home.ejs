@@ -6,17 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi super App</title>
 </head>
-<body>
+<% if (userData) { %>
+ <body style="background-color: <%= userData.color %>">
+
+
+ <% } else { %>
+  <body>
+<% } %></body>
+    
+
+    <% if (userData) { %>
+
+        <p>
+        Hola <%= userData.name %> , elegiste el color: <%= userData.color %> , tu email es:
+<%= userData.email %> y tu edad es: <%= userData.age %>
+    </p>
+    <% } else { %>
+     Hola Invitado! Por favor identificate!
+     
+    <% } %>
+    
     <form action="/" method="post">
         <input type="text" name="name" placeholder="">
+        <% if (errors && errors.name) { %>
+         <p style="color: red"> <%= errors.name.msg %>  </p>
+        <% } %>
         <select name="color" id="color">
             <option value="red">Rojo</option>
-            <option value="Azul">Azul</option>
-            <option value="Verde">Verde</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
         </select>
         <input type="email" name="email" placeholder="Email">
+        <% if (errors && errors.email) { %>
+         <p style="color: red"> <%= errors.email.msg %>  </p>
+        <% } %>
         <input type="number" name="age" placeholder="Edad">
-        <button type="submit" name="enviar" placeholder="">Enviar</button>
+        <button type="submit" name="" placeholder="">Enviar</button>
 
 
     </form>
